@@ -12,6 +12,8 @@ import {
 
 const { Header, Content, Footer } = AntLayout;
 
+
+
 const Layout = ({ children }) => {
   const [darkMode, setDarkMode] = useState(false);
 
@@ -31,13 +33,24 @@ const Layout = ({ children }) => {
         color: darkMode ? '#fff' : '#001529',
 
       }}>
+        <Header
+            style={{
+                position: 'fixed',
+                zIndex: 1,
+                width: '100%',
+                background: darkMode ? '#001529' : '#fff',
+                color: darkMode ? '#fff' : '#001529',
+                borderBottom: '1px solid #f0f0f0'
+            }}
+        >
+
 
           <Menu theme={darkMode ? 'dark' : 'light'} mode="horizontal" defaultSelectedKeys={['1']}
                 style={
                     {
                         height
                         : '64px',
-                        padding: '0 50px',
+
                         lineHeight: '64px',
                         background: darkMode ? '#001529' : '#fff',
                         color: darkMode ? '#fff' : '#001529',
@@ -54,7 +67,15 @@ const Layout = ({ children }) => {
             <Menu.Item key="3" icon={<SettingOutlined />}>
               Settings
             </Menu.Item>
-            <Menu.Item key="4">
+            <Menu.Item
+                style={{
+
+                    lineHeight: '64px',
+                    background: darkMode ? '#001529' : '#fff',
+                    color: darkMode ? '#fff' : '#001529',
+
+                }}
+            >
                 <Switch
 
                     checkedChildren="Dark"
@@ -62,25 +83,24 @@ const Layout = ({ children }) => {
                     onChange={handleThemeChange}
                 />
             </Menu.Item>
-            <Image src={
-                darkMode ? W_logo : B_logo
-
-            } alt="Pulse Fashion Solution" width={200}
-
-                style={
-                    {
-                        position: 'absolute',
-                        right : '10px',
-
+            <Menu.Item
+                style={{
+                    position: 'absolute',
+                    right: '10px',
+                    lineHeight: '64px',
                 }
-            }
-            />
+              }
+            >
+                <Image src={darkMode ? W_logo : B_logo} alt="logo" width={200} />
+            </Menu.Item>
           </Menu>
+        </Header>
 
         <Content style={{ padding: '0 50px', marginTop: 64 }}>
           <div className="site-layout-content">{children}</div>
         </Content>
         <Footer style={{ textAlign: 'center' }}>Pulse Fashion Pvt LTD © {new Date().getFullYear()}</Footer>
+
       </AntLayout>
     </>
   );
